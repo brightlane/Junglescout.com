@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jungle Scout — Dominate Amazon FBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00FF7F;
+    --dark-green: #00C45A;
+    --jungle: #0A1A0F;
+    --deep: #050D08;
+    --leaf: #1A3A20;
+    --gold: #FFD700;
+    --amber: #FF9F00;
+    --white: #F0FFF4;
+    --muted: #7A9E85;
+    --danger: #FF4444;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--green);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), width 0.3s, height 0.3s;
+    opacity: 0.5;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(5,13,8,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--green);
+    letter-spacing: 3px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-cta {
+    background: var(--green);
+    color: var(--jungle);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); transform: scale(1.05); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated jungle background */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,255,127,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(0,196,90,0.04) 0%, transparent 60%),
+      linear-gradient(160deg, var(--deep) 0%, var(--jungle) 50%, #071510 100%);
+    z-index: 0;
+  }
+
+  /* Grid lines */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,127,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,127,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 70% 70% at 70% 50%, black 30%, transparent 70%);
+  }
+
+  /* Floating leaf shapes */
+  .leaf {
+    position: absolute;
+    opacity: 0.08;
+    animation: floatLeaf linear infinite;
+    pointer-events: none;
+  }
+  @keyframes floatLeaf {
+    0% { transform: translateY(110vh) rotate(0deg); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 760px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--green);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 140px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .hero-title .line1 { display: block; color: var(--white); }
+  .hero-title .line2 {
+    display: block;
+    color: var(--green);
+    -webkit-text-stroke: 1px var(--green);
+    text-shadow: 0 0 80px rgba(0,255,127,0.4);
+  }
+  .hero-title .line3 { display: block; color: var(--white); }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 28px 0 48px;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+
+  .hero-buttons {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--jungle);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 18px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(0,255,127,0.4); }
+
+  .btn-secondary {
+    color: var(--green);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 18px 32px;
+    border: 1px solid rgba(0,255,127,0.3);
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--green);
+    background: rgba(0,255,127,0.05);
+  }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(0,255,127,0.1);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--green);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Hero right panel */
+  .hero-visual {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--green);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+  .ticker-track {
+    display: flex; gap: 64px;
+    animation: ticker 25s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--jungle);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 20px;
+    flex-shrink: 0;
+  }
+  .ticker-item::after { content: '✦'; color: var(--jungle); opacity: 0.5; }
+
+  /* FEATURES */
+  .features {
+    padding: 120px 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 72px;
+  }
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+  }
+  .section-title em { color: var(--green); font-style: normal; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .feature-card {
+    background: var(--jungle);
+    padding: 48px 40px;
+    border: 1px solid rgba(0,255,127,0.06);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .feature-card:hover { background: #0E2018; border-color: rgba(0,255,127,0.15); }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:hover .feature-icon { transform: scale(1.1) rotate(-5deg); }
+
+  .feature-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(0,255,127,0.3);
+    letter-spacing: 3px;
+    margin-bottom: 28px;
+  }
+  .feature-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .feature-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .feature-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .feature-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--green);
+    border: 1px solid rgba(0,255,127,0.3);
+    padding: 4px 10px;
+    text-transform: uppercase;
+  }
+
+  /* BIG CTA SECTION */
+  .big-cta {
+    margin: 0 48px;
+    background: var(--leaf);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    border: 1px solid rgba(0,255,127,0.1);
+  }
+  .big-cta::before {
+    content: 'PROFIT';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 300px;
+    position: absolute;
+    right: -20px; top: 50%; transform: translateY(-50%);
+    color: rgba(0,255,127,0.04);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -5px;
+  }
+  .big-cta-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+  .big-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .big-cta-title span { color: var(--green); }
+  .big-cta-sub {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+  .discount-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--gold);
+    color: var(--jungle);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  /* PRICING */
+  .pricing {
+    padding: 120px 48px;
+    position: relative; z-index: 2;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 72px;
+  }
+  .pricing-card {
+    background: var(--jungle);
+    padding: 48px 40px;
+    border: 1px solid rgba(0,255,127,0.06);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .pricing-card.featured {
+    background: #0E2A16;
+    border-color: var(--green);
+    transform: scale(1.02);
+    z-index: 2;
+  }
+  .pricing-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--green);
+    color: var(--jungle);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 16px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .pricing-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .pricing-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .pricing-price sup {
+    font-size: 28px; vertical-align: super;
+    color: var(--green);
+  }
+  .pricing-period {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+  }
+  .pricing-features-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 40px;
+  }
+  .pricing-features-list li {
+    font-size: 14px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0,255,127,0.06);
+  }
+  .pricing-features-list li::before {
+    content: '→';
+    color: var(--green);
+    font-family: monospace;
+    flex-shrink: 0;
+  }
+  .pricing-features-list li.active { color: var(--white); }
+
+  .btn-pricing {
+    display: block; width: 100%;
+    text-align: center;
+    padding: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-pricing-outline {
+    border: 1px solid rgba(0,255,127,0.3);
+    color: var(--green);
+  }
+  .btn-pricing-outline:hover { border-color: var(--green); background: rgba(0,255,127,0.05); }
+  .btn-pricing-solid {
+    background: var(--green);
+    color: var(--jungle);
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .btn-pricing-solid:hover { background: var(--gold); transform: scale(1.02); }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 120px 48px;
+    background: var(--jungle);
+    position: relative; z-index: 2;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 72px;
+  }
+  .testimonial-card {
+    background: var(--deep);
+    padding: 40px;
+    border: 1px solid rgba(0,255,127,0.08);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .testimonial-card:hover {
+    border-color: rgba(0,255,127,0.2);
+    transform: translateY(-4px);
+  }
+  .testimonial-quote {
+    font-size: 48px;
+    color: var(--green);
+    font-family: Georgia, serif;
+    line-height: 0.5;
+    margin-bottom: 20px;
+    opacity: 0.4;
+  }
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--white);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--leaf);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    border: 2px solid rgba(0,255,127,0.2);
+  }
+  .author-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .author-result {
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* HOW IT WORKS */
+  .how-it-works {
+    padding: 120px 48px;
+    position: relative; z-index: 2;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 72px;
+    counter-reset: steps;
+  }
+  .step {
+    padding: 48px 36px;
+    background: var(--jungle);
+    border: 1px solid rgba(0,255,127,0.06);
+    position: relative;
+    counter-increment: steps;
+    transition: all 0.3s;
+  }
+  .step:hover { background: #0E2018; }
+  .step::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: rgba(0,255,127,0.06);
+    position: absolute;
+    top: 12px; right: 20px;
+    line-height: 1;
+  }
+  .step-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding: 160px 48px;
+    text-align: center;
+    position: relative; z-index: 2;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,255,127,0.07), transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .final-cta-title span { color: var(--green); }
+  .final-cta-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--jungle);
+    padding: 48px;
+    border-top: 1px solid rgba(0,255,127,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--green);
+    letter-spacing: 3px;
+  }
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    max-width: 400px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .footer-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-link:hover { color: var(--gold); }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeInUp 0.8s cubic-bezier(.25,.46,.45,.94) both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.4s; }
+  .hero-buttons { animation-delay: 0.55s; }
+  .hero-stats { animation-delay: 0.7s; }
+
+  /* Glowing dot pulse */
+  .pulse-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0,255,127,0.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,255,127,0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0,255,127,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,255,127,0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    .hero-stats { flex-wrap: wrap; gap: 32px; }
+    .features { padding: 80px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .pricing { padding: 80px 24px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.featured { transform: none; }
+    .testimonials { padding: 80px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .big-cta { margin: 0 24px; padding: 60px 40px; }
+    .final-cta { padding: 100px 24px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">JUNGLE<span>SCOUT</span></a>
+  <a href="https://get.junglescout.com/wloofjbvk5mp" class="nav-cta" target="_blank">Start Free Trial →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Floating leaves -->
+  <div class="leaf" style="left:85%;width:60px;height:60px;animation-duration:18s;animation-delay:-3s;font-size:50px;">🌿</div>
+  <div class="leaf" style="left:92%;width:40px;height:40px;animation-duration:22s;animation-delay:-8s;font-size:35px;">🍃</div>
+  <div class="leaf" style="left:78%;width:50px;height:50px;animation-duration:15s;animation-delay:-12s;font-size:45px;">🌱</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse-dot"></span> The #1 Amazon Seller Tool</div>
+    <h1 class="hero-title">
+      <span class="line1">FIND YOUR</span>
+      <span class="line2">WINNING</span>
+      <span class="line3">PRODUCT.</span>
+    </h1>
+    <p class="hero-sub">
+      Over <strong>1 million entrepreneurs</strong> use Jungle Scout to launch, grow, and scale profitable Amazon businesses. Stop guessing. Start selling.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-primary" target="_blank">
+        🚀 Start Free Trial
+      </a>
+      <a href="#features" class="btn-secondary">See How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1M+</div>
+        <div class="stat-label">Sellers Trust Us</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500M+</div>
+        <div class="stat-label">Products Tracked</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$1B+</div>
+        <div class="stat-label">Revenue Generated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">Product Research</div>
+    <div class="ticker-item">Keyword Scout</div>
+    <div class="ticker-item">Supplier Database</div>
+    <div class="ticker-item">Sales Analytics</div>
+    <div class="ticker-item">Rank Tracker</div>
+    <div class="ticker-item">Listing Builder</div>
+    <div class="ticker-item">Review Automation</div>
+    <div class="ticker-item">Inventory Manager</div>
+    <div class="ticker-item">Product Research</div>
+    <div class="ticker-item">Keyword Scout</div>
+    <div class="ticker-item">Supplier Database</div>
+    <div class="ticker-item">Sales Analytics</div>
+    <div class="ticker-item">Rank Tracker</div>
+    <div class="ticker-item">Listing Builder</div>
+    <div class="ticker-item">Review Automation</div>
+    <div class="ticker-item">Inventory Manager</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">What You Get</div>
+      <h2 class="section-title">EVERY TOOL YOU<br>NEED TO <em>WIN</em></h2>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-number">01</div>
+      <span class="feature-icon">🔬</span>
+      <h3 class="feature-title">Product Research</h3>
+      <p class="feature-desc">Dig through 500M+ Amazon products with powerful filters to uncover high-demand, low-competition niches instantly.</p>
+      <span class="feature-tag">Core Feature</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">02</div>
+      <span class="feature-icon">🔑</span>
+      <h3 class="feature-title">Keyword Scout</h3>
+      <p class="feature-desc">Discover exactly what shoppers are typing. Rank for the terms that drive real sales volume on Amazon.</p>
+      <span class="feature-tag">SEO Power</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">03</div>
+      <span class="feature-icon">📦</span>
+      <h3 class="feature-title">Supplier Database</h3>
+      <p class="feature-desc">Access verified suppliers from around the world. Find who manufactures your competitors' best sellers.</p>
+      <span class="feature-tag">Sourcing</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">04</div>
+      <span class="feature-icon">📈</span>
+      <h3 class="feature-title">Sales Analytics</h3>
+      <p class="feature-desc">Track your business finances in real time. Know your exact profit, ROI, and COGS at a glance.</p>
+      <span class="feature-tag">Business Intel</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">05</div>
+      <span class="feature-icon">🏆</span>
+      <h3 class="feature-title">Rank Tracker</h3>
+      <p class="feature-desc">Monitor your keyword rankings daily. Spot trends, protect positions, and outmaneuver competitors.</p>
+      <span class="feature-tag">Competitive Edge</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">06</div>
+      <span class="feature-icon">✍️</span>
+      <h3 class="feature-title">Listing Builder</h3>
+      <p class="feature-desc">Write conversion-optimized product listings with AI-powered suggestions backed by real search data.</p>
+      <span class="feature-tag">AI Powered</span>
+    </div>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<div class="big-cta">
+  <div class="big-cta-content">
+    <div class="discount-badge">✦ Exclusive Discount — Limited Time</div>
+    <h2 class="big-cta-title">READY TO BUILD YOUR <span>EMPIRE?</span></h2>
+    <p class="big-cta-sub">
+      Join over a million entrepreneurs who discovered their winning products with Jungle Scout. The jungle is full of gold — you just need the right tools to find it.
+    </p>
+    <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-primary" target="_blank" style="font-size:14px; padding:20px 52px;">
+      🌿 Claim Your Free Trial Now
+    </a>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">The Process</div>
+      <h2 class="section-title">FROM ZERO TO<br><em>SELLER</em> IN 4 STEPS</h2>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="step-icon">🌐</span>
+      <h3 class="step-title">Sign Up</h3>
+      <p class="step-desc">Create your Jungle Scout account in 60 seconds. No credit card required for the free trial.</p>
+    </div>
+    <div class="step">
+      <span class="step-icon">🔭</span>
+      <h3 class="step-title">Research</h3>
+      <p class="step-desc">Use Product Database and Opportunity Finder to identify profitable niches with proven demand.</p>
+    </div>
+    <div class="step">
+      <span class="step-icon">🤝</span>
+      <h3 class="step-title">Source</h3>
+      <p class="step-desc">Find your manufacturer using Supplier Database. Contact, sample, and negotiate with confidence.</p>
+    </div>
+    <div class="step">
+      <span class="step-icon">💰</span>
+      <h3 class="step-title">Launch & Scale</h3>
+      <p class="step-desc">List your product, launch with keyword-optimized content, and grow with analytics guiding every move.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Success Stories</div>
+      <h2 class="section-title">SELLERS ARE<br><em>WINNING</em> DAILY</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">I found my first winning product in under a week using Jungle Scout. Now I'm doing $40K/month on Amazon. This tool paid for itself a thousand times over.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">Marcus T.</div>
+          <div class="author-result">📈 $40K/month revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">The keyword research alone is worth 10x the subscription price. I rank page 1 for all my main terms within weeks of launching now.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Sarah K.</div>
+          <div class="author-result">🥇 Page 1 Rankings</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">I've tried every Amazon tool out there. Nothing comes close to Jungle Scout. The data is accurate, the UI is clean, and the ROI is undeniable.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🧑</div>
+        <div>
+          <div class="author-name">Derek M.</div>
+          <div class="author-result">💼 7-Figure Seller</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">INVEST IN YOUR<br><em>FUTURE</em> SELF</h2>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price"><sup>$</sup>29</div>
+      <div class="pricing-period">/ month · billed monthly</div>
+      <ul class="pricing-features-list">
+        <li class="active">Product Database Access</li>
+        <li class="active">Keyword Scout (500 searches)</li>
+        <li class="active">Opportunity Finder</li>
+        <li>Rank Tracker (up to 50 keywords)</li>
+        <li>Sales Analytics</li>
+      </ul>
+      <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-pricing btn-pricing-outline" target="_blank">Get Started →</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-name">Suite</div>
+      <div class="pricing-price"><sup>$</sup>49</div>
+      <div class="pricing-period">/ month · billed monthly</div>
+      <ul class="pricing-features-list">
+        <li class="active">Everything in Starter</li>
+        <li class="active">Rank Tracker (up to 150 kw)</li>
+        <li class="active">Supplier Database</li>
+        <li class="active">Listing Builder + Grader</li>
+        <li class="active">Review Automation</li>
+      </ul>
+      <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-pricing btn-pricing-solid" target="_blank">Start Free Trial →</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">Professional</div>
+      <div class="pricing-price"><sup>$</sup>84</div>
+      <div class="pricing-period">/ month · billed monthly</div>
+      <ul class="pricing-features-list">
+        <li class="active">Everything in Suite</li>
+        <li class="active">Rank Tracker (up to 1000 kw)</li>
+        <li class="active">6 User Seats</li>
+        <li class="active">Priority Support</li>
+        <li class="active">Historical Data Access</li>
+      </ul>
+      <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-pricing btn-pricing-outline" target="_blank">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta-title">THE JUNGLE<br><span>AWAITS YOU.</span></h2>
+  <p class="final-cta-sub">
+    Your competition is already using Jungle Scout. Don't fall behind. Start your free trial today — no credit card needed.
+  </p>
+  <a href="https://get.junglescout.com/wloofjbvk5mp" class="btn-primary" target="_blank" style="font-size:15px;padding:22px 60px;margin:0 auto;display:inline-flex;">
+    🌿 Start Free Trial — No Card Required
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JUNGLE<span style="color:var(--white)">SCOUT</span></div>
+  <p class="footer-note">This page contains affiliate links. When you sign up through our link, we may earn a commission at no extra cost to you.</p>
+  <a href="https://get.junglescout.com/wloofjbvk5mp" class="footer-link" target="_blank">
+    Get Started →
+  </a>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
+  });
+
+  // Smooth ring follow
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scale cursor on hover
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(2)';
+      ring.style.width = '60px'; ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Stagger children
+  document.querySelectorAll('.features-grid, .pricing-grid, .testimonials-grid, .steps').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.08}s`;
+    });
+  });
+</script>
+</body>
+</html>
