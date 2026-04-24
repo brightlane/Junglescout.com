@@ -1,0 +1,46 @@
+# robots.txt file for https://yourdomain.com
+
+# Allow all crawlers full access to the site
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /private/
+
+# Allow specific pages (if needed) - example:
+# Allow the sitemap to be crawled
+Allow: /sitemap.xml
+
+# Block common bot crawlers (for example, Googlebot's images and crawlers)
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-News
+Disallow: /
+
+# Block specific pages or folders
+Disallow: /checkout/
+Disallow: /login/
+Disallow: /cart/
+
+# Prevent indexing of duplicate content, like search results or paginated URLs
+Disallow: /search?
+Disallow: /page/
+
+# Allow access to certain specific resources (like images, CSS, or JS)
+Allow: /images/
+Allow: /assets/
+Allow: /styles/
+Allow: /scripts/
+
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Prevent crawling of user profiles (replace with your specific URLs)
+Disallow: /profile/
+
+# Specific for affiliate marketing:
+# Here we are blocking the search engines from indexing affiliate login and payment pages to ensure the focus is on content
+Disallow: /affiliate-login/
+Disallow: /affiliate-dashboard/
+
+# Example to block a folder or file related to a specific subdomain
+Disallow: /subdomain/folder/
