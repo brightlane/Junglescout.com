@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Example of a blog post or product page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/blog/article1</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Example of another blog post or product page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/blog/article2</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Category pages or special product pages -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/category/amazon-fba-tools</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+
+  <!-- Affiliate page (if you want this to be indexed) -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/affiliate</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Contact page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/contact</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- FAQ page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/faq</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Testimonials page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/testimonials</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Privacy policy page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/privacy-policy</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- Terms of service page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/terms-of-service</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- Sitemap page -->
+  <url>
+    <loc>https://brightlane.github.io/Junglescout.com/sitemap.xml</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Add other important pages here -->
+
+</urlset>
