@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Amazon FBA & JungleScout Growth Blog</title>
+
+<meta name="description" content="Amazon FBA strategies, product research insights, and ecommerce growth guides powered by JungleScout tools.">
+<meta name="robots" content="index, follow">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1220;
+  color: #ffffff;
+}
+
+header {
+  padding: 2rem;
+  text-align: center;
+  background: #111827;
+  border-bottom: 1px solid #1f2937;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: #0f172a;
+  padding: 1rem;
+  border-right: 1px solid #1f2937;
+  overflow-y: auto;
+}
+
+.post-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #1e293b;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.post-item:hover {
+  background: #334155;
+}
+
+/* Content */
+.content {
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.tag {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.article {
+  line-height: 1.7;
+  color: #e5e7eb;
+}
+
+.affiliate {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #f59e0b;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .post-item {
+    min-width: 220px;
+    margin-right: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>JungleScout Growth Blog</h1>
+  <p>Amazon FBA • Product Research • Ecommerce Scaling</p>
+</header>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar"></div>
+
+  <!-- Content -->
+  <div class="content" id="content">
+    <h2>Loading article...</h2>
+  </div>
+
+</div>
+
+<script>
+/* =========================
+   BLOG DATABASE (SCALES)
+========================= */
+
+const posts = [
+  {
+    title: "How to Find Winning Amazon Products in 2026",
+    tag: "Product Research",
+    content: `
+Finding winning Amazon products requires data, not guesswork.
+
+You need to evaluate:
+- Demand trends
+- Competition level
+- Profit margins
+
+Tools like JungleScout help identify low-competition, high-demand products before entering a market.
+
+Successful sellers focus on validation first, not branding.
+
+Once validated, scaling becomes predictable.
+    `
+  },
+
+  {
+    title: "Why Most Amazon Sellers Fail",
+    tag: "Strategy",
+    content: `
+Most Amazon sellers fail because they choose products emotionally.
+
+They ignore:
+- Market saturation
+- Seasonality
+- Real demand data
+
+JungleScout helps eliminate these mistakes by showing real sales estimates and competition analysis.
+
+Data-driven decisions outperform intuition every time.
+    `
+  },
+
+  {
+    title: "Scaling from $0 to $10K/month",
+    tag: "Growth",
+    content: `
+Scaling on Amazon requires reinvestment and structure.
+
+Start with:
+1 winning product
+Then expand into:
+- Complementary products
+- Variations
+- Bundles
+
+JungleScout helps track competitors and find expansion opportunities.
+
+Consistency is more powerful than virality.
+    `
+  }
+];
+
+/* =========================
+   RENDER ENGINE
+========================= */
+
+const sidebar = document.getElementById("sidebar");
+const content = document.getElementById("content");
+
+function renderPost(index) {
+  const post = posts[index];
+
+  content.innerHTML = `
+    <h2>${post.title}</h2>
+    <div class="tag">${post.tag}</div>
+    <div class="article">${post.content.replace(/\n/g, "<br>")}</div>
+
+    <a class="affiliate"
+       href="https://get.junglescout.com/wloofjbvk5mp"
+       target="_blank" rel="noopener">
+      🚀 Try JungleScout Now
+    </a>
+  `;
+}
+
+/* Sidebar builder */
+function init() {
+  posts.forEach((post, i) => {
+    const div = document.createElement("div");
+    div.className = "post-item";
+    div.innerText = post.title;
+    div.onclick = () => renderPost(i);
+    sidebar.appendChild(div);
+  });
+
+  renderPost(0);
+}
+
+init();
+</script>
+
+</body>
+</html>
