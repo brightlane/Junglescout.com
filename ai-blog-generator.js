@@ -9,10 +9,16 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,  // Use your OpenAI API key here
 });
 
+// List of 500 keywords
+const keywords = [
+  "JungleScout Amazon FBA guide", "Amazon FBA product research", "Best Amazon FBA tools", "How to use JungleScout", "Product research Amazon FBA", 
+  // Add the remaining 495 keywords here
+];
+
 /**
  * Generate high-quality SEO-optimized article
  */
-async function generateArticle(keyword = "JungleScout Amazon FBA guide") {
+async function generateArticle(keyword) {
   const prompt = `
   Write a high-quality, SEO-optimized blog article about ${keyword}. Include the following:
   - 1500 to 2500 words
@@ -45,9 +51,24 @@ async function generateArticle(keyword = "JungleScout Amazon FBA guide") {
 }
 
 /**
- * Save the generated article to a file
+ * Generate SEO meta tags dynamically for each keyword
  */
-async function saveArticle(title, content) {
+function generateMetaTags(keyword) {
+  const title = `${keyword} - Best Tools for Amazon FBA`;
+  const description = `Learn how ${keyword} can help you optimize your Amazon FBA business. This guide includes tips, tools like JungleScout, and proven strategies for success.`;
+  const keywords = `${keyword}, JungleScout, Amazon FBA, product research, eCommerce`;
+
+  return {
+    title,
+    description,
+    keywords,
+  };
+}
+
+/**
+ * Save the generated article to a file with SEO meta tags
+ */
+async function saveArticle(title, content, metaTags) {
   // Convert the title to a valid file name (slugify)
   const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -61,12 +82,12 @@ async function saveArticle(title, content) {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="${title}">
-    <meta name="keywords" content="${title}, JungleScout, Amazon FBA, product research">
-    <meta property="og:title" content="${title}">
-    <meta property="og:description" content="${title}">
+    <meta name="description" content="${metaTags.description}">
+    <meta name="keywords" content="${metaTags.keywords}">
+    <meta property="og:title" content="${metaTags.title}">
+    <meta property="og:description" content="${metaTags.description}">
     <meta property="og:type" content="article">
-    <title>${title}</title>
+    <title>${metaTags.title}</title>
   </head>
   <body>
     <article>
@@ -89,17 +110,18 @@ async function saveArticle(title, content) {
 }
 
 /**
- * Main function to generate and save the article
+ * Main function to generate and save the article for each keyword
  */
-async function generateAndSaveArticle(keyword) {
+async function generateAndSaveArticleForAllKeywords() {
   try {
-    const article = await generateArticle(keyword);
-    const filePath = await saveArticle(keyword, article);
-    console.log(`Article saved to: ${filePath}`);
-    return filePath;
+    for (const keyword of keywords) {
+      const article = await generateArticle(keyword);
+      const metaTags = generateMetaTags(keyword);
+      const filePath = await saveArticle(keyword, article, metaTags);
+      console.log(`Article saved to: ${filePath}`);
+    }
   } catch (error) {
-    console.error("Error generating and saving article:", error);
-    throw new Error("Error generating and saving article.");
+    console.error("Error generating and saving articles:", error);
   }
 }
 
@@ -107,5 +129,6 @@ async function generateAndSaveArticle(keyword) {
 module.exports = {
   generateArticle,
   saveArticle,
-  generateAndSaveArticle,
+  generateMetaTags,
+  generateAndSaveArticleForAllKeywords,
 };
