@@ -1,0 +1,46 @@
+<!-- SEO Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="index, follow"> <!-- Allow indexing and following of links -->
+<meta name="description" content="Your page description here. This should be a concise summary of your page content for search engines and users.">
+<meta name="keywords" content="jungle scout, affiliate marketing, product research, amazon fba, junglescout tool, amazon products, e-commerce">
+<meta name="author" content="Your Name or Company Name">
+
+<!-- Canonical Link (to avoid duplicate content issues) -->
+<link rel="canonical" href="https://www.yourdomain.com/your-page-url">
+
+<!-- Open Graph Tags (For Social Media Sharing) -->
+<meta property="og:title" content="Title of Your Page">
+<meta property="og:description" content="Short description for social media sharing.">
+<meta property="og:url" content="https://www.yourdomain.com/your-page-url">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.yourdomain.com/path/to/your-image.jpg">
+
+<!-- Twitter Card Tags (For Twitter Sharing) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Title of Your Page">
+<meta name="twitter:description" content="Short description for Twitter sharing.">
+<meta name="twitter:image" content="https://www.yourdomain.com/path/to/your-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="https://www.yourdomain.com/favicon.ico" type="image/x-icon">
+
+<!-- Structured Data JSON-LD (Schema Markup) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Your Page Title",
+  "url": "https://www.yourdomain.com/your-page-url",
+  "description": "Description of the page for search engines and rich snippets.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Your Company Name",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.yourdomain.com/path/to/logo.jpg"
+    }
+  }
+}
+</script>
